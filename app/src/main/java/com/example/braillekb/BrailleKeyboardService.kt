@@ -177,8 +177,12 @@ class BrailleKeyboardService : InputMethodService() {
 
     private fun handleGesture(g: Gesture) {
         val ic = currentInputConnection ?: return
+        // qualquer gesto interrompe um sinal de duas células pendente (ponto 6 isolado)
+        // e o modo maiúscula de uma letra só; "palavra toda" (capsWord) só termina no espaço
+        pendingDot6 = false
+        capitalNext = false
         when (g) {
-            Gesture.SPACE -> { speakWordBeforeSpace(ic); ic.commitText(" ", 1); numberMode = false; capsWord = false; capitalNext = false; pendingDot6 = false; lastOut = null; click(Key.SPACE) }
+            Gesture.SPACE -> { speakWordBeforeSpace(ic); ic.commitText(" ", 1); numberMode = false; capsWord = false; lastOut = null; click(Key.SPACE) }
             Gesture.BACKSPACE -> { speakDeletedChar(ic); deleteOne(); lastOut = null; click(Key.DELETE) }
             Gesture.NEWLINE -> {
                 click(Key.RETURN)
