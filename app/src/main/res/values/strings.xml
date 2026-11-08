@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PsKeyboard</string>
+    <string name="a11y_desc">Permite que o teclado braille receba toques de vários dedos com o TalkBack ou outro leitor de tela ligado. Não lê nem altera o conteúdo da tela.</string>
+</resources>
